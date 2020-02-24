@@ -55,6 +55,11 @@ public class MainActivity extends AppCompatActivity implements IConterat.IView {
     @Override
     public void getSuccess(String str) {
         Log.i("xxx","str"+str);
+        Boolean wifi = Util.getInstance().isWifi(this);
+        //判断网络
+        if (wifi){
+
+
         Gson gson = new Gson();
         JsonBean jsonBean = gson.fromJson(str, JsonBean.class);
         List<JsonBean.ResultsBean> results = jsonBean.getResults();
@@ -74,5 +79,6 @@ public class MainActivity extends AppCompatActivity implements IConterat.IView {
         BaseAdapt baseAdapt = new BaseAdapt(this, newsist);
         //设置适配器
         lv.setAdapter(baseAdapt);
+        }
     }
 }
