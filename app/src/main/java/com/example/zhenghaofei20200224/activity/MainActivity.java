@@ -1,5 +1,6 @@
 package com.example.zhenghaofei20200224.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -7,10 +8,12 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zhenghaofei20200224.R;
 import com.example.zhenghaofei20200224.adapter.BaseAdapt;
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements IConterat.IView {
     //成功返回的方法
     @Override
     public void getSuccess(String str) {
-        Log.i("xxx","str"+str);
+       // Log.i("xxx","str"+str);
         Boolean wifi = Util.getInstance().isWifi(this);
         //判断网络
         if (wifi){
@@ -75,10 +78,25 @@ public class MainActivity extends AppCompatActivity implements IConterat.IView {
                 Picasso.get().load(imageurl).into((ImageView) view);
             }
         });
-        List<JsonBean.ResultsBean.NewsistBean> newsist = resultsBean.getNewsist();
+        final List<JsonBean.ResultsBean.NewsistBean> newsist = resultsBean.getNewsist();
         BaseAdapt baseAdapt = new BaseAdapt(this, newsist);
         //设置适配器
         lv.setAdapter(baseAdapt);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                JsonBean.ResultsBean.NewsistBean newsistBean = newsist.get(position);
+                String title = newsistBean.getTitle();
+                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                intent.putExtra("title",title);
+                startActivity(intent);
+            }
+        });
         }
+    }
+
+    @Override
+    public void getListSuccess(String str) {
+
     }
 }

@@ -24,6 +24,8 @@ public class JsonBean {
         private List<BannerBean> banner;
         private List<NewsistBean> newsist;
 
+
+
         public List<BannerBean> getBanner() {
             return banner;
         }

@@ -9,6 +9,8 @@ package com.example.zhenghaofei20200224.conterat;
 public interface IConterat {
     interface IView{
         void getSuccess(String str);
+
+        void getListSuccess(String str);
     }
 
     interface IPresenter{
