@@ -6,8 +6,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.zhenghaofei20200224.R;
 import com.example.zhenghaofei20200224.bean.JsonBean;
+import com.example.zhenghaofei20200224.bean.ListBean;
 import com.example.zhenghaofei20200224.utils.Util;
 import com.squareup.picasso.Picasso;
 
@@ -20,9 +22,9 @@ import java.util.List;
  */
 public class BaseAdapt extends android.widget.BaseAdapter {
     Context context;
-    List<JsonBean.ResultsBean.NewsistBean> list;
+    List<ListBean.ResultBean.RxxpBean.CommodityListBean> list;
 
-    public BaseAdapt(Context context, List<JsonBean.ResultsBean.NewsistBean> list) {
+    public BaseAdapt(Context context, List<ListBean.ResultBean.RxxpBean.CommodityListBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -55,13 +57,11 @@ public class BaseAdapt extends android.widget.BaseAdapter {
         }else {
             holder=(ViewHolder) convertView.getTag();
         }
-        JsonBean.ResultsBean.NewsistBean newsistBean = list.get(position);
-        String image = newsistBean.getImage();
-        String title = newsistBean.getTitle();
-        String content = newsistBean.getContent();
-        holder.zi1.setText(title);
-        holder.zi2.setText(content);
-        Picasso.get().load(image).into(holder.tu);
+        ListBean.ResultBean.RxxpBean.CommodityListBean commodityListBean = list.get(position);
+        String masterPic = commodityListBean.getMasterPic();
+        String commodityName = commodityListBean.getCommodityName();
+        Glide.with(context).load(masterPic).into(holder.tu);
+        holder.zi1.setText(commodityName);
 
         return convertView;
     }

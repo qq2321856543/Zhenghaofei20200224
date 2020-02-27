@@ -29,4 +29,16 @@ public class HomePresenter implements IConterat.IPresenter {
             }
         });
     }
+
+    @Override
+    public void getList(String url) {
+        //掉方法
+        model.getJs(url, new IConterat.Inerfa() {
+            @Override
+            public void Ok(String json) {
+                //返回数据
+                mView.getListSuccess(json);
+            }
+        });
+    }
 }

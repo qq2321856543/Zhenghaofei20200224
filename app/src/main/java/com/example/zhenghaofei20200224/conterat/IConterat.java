@@ -11,10 +11,12 @@ public interface IConterat {
         void getSuccess(String str);
 
         void getListSuccess(String str);
+
     }
 
     interface IPresenter{
         void getBanner(String url);
+        void getList(String url);
     }
     interface IModel{
         void getJs(String path,Inerfa inerfa);
