@@ -22,7 +22,8 @@
             <ListView
                 android:layout_width="match_parent"
                 android:id="@+id/lv"
-                android:layout_height="1300dp">
+                android:layout_weight="1"
+                android:layout_height="@dimen/dp0">
 
             </ListView>
         </LinearLayout>
